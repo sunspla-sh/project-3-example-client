@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context";  // <== IMPORT
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
   // the values from AuthContext.Provider `value` prop
-  const { isLoggedIn, user } = useContext(AuthContext);   // <== ADD
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);   // <== ADD
 
   
   //  Update the rendering logic to display different content 
@@ -24,7 +24,7 @@ function Navbar() {
           <Link to="/projects">
             <button>Projects</button>
           </Link>        
-          <button>Logout</button>
+          <button onClick={logOutUser}>Logout</button>
         </>
       )}
 
@@ -34,6 +34,8 @@ function Navbar() {
           <Link to="/login"> <button>Login</button> </Link>
         </>
       )}
+
+      { user ? <p>hello, {user.name}</p> : <p>hello, stranger</p>}
     </nav>
   );
 }
